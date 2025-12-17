@@ -1,9 +1,9 @@
-import Image from "next/image";
+import HeroSection from "@/components/landing-page/hero-section";
 
 export default function Home() {
   return (
     <div>
-      <h1>Radhe Radhe 🙏</h1>
+      <HeroSection/>
     </div>
   );
 }
