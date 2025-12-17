@@ -1,17 +1,42 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRightIcon, SparklesIcon } from "lucide-react";
+import { ArrowRightIcon, EyeIcon, RocketIcon, SparklesIcon, UsersIcon } from "lucide-react";
 import Link from "next/link";
+import StatsCard from "./stats-card";
+import { stat } from "fs";
 
 const LiveBadge = () => {
-    return <Badge variant="outline" className="px-4 py-2 mb-8 text-sm backdrop-blur-sm">
+    return ( 
+    <Badge variant="outline" className="px-4 py-2 mb-8 text-sm backdrop-blur-sm">
         <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 "></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
         </span>
        <span className="text-muted-foreground"> Join thousands of creators sharing their work</span>
       </Badge>
-}
+    );
+};
+
+
+    const statsData = [
+        {
+            icon: RocketIcon,
+            value: "2.5K+",
+            label: "Projects Shared",
+        },
+        {
+            icon: UsersIcon,
+            value: "10K+",
+            label: "Active Creators",
+            hasBorder: true,
+        },
+        {
+            icon: EyeIcon,
+            value: "50K+",
+            label: "Monthly Visitors",
+        }
+    ]
+
 
 export default function HeroSection() {
   return (
@@ -39,6 +64,11 @@ export default function HeroSection() {
                 <ArrowRightIcon className="size-5" />
               </Link>
             </Button>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 max-w-2xl w-full">
+        {statsData.map((stat) => (
+            <StatsCard key={stat.label}{...stat} />
+        ))}
       </div>
       </div>
       </div>
