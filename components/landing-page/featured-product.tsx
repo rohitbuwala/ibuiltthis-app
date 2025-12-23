@@ -4,28 +4,30 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Product from "@/app/products/[id]/page";
 import ProductCard from "@/components/products/product-card";
+import { getFeaturedProducts } from "@/lib/products/product-select";
 
-const featuredProducts = [
-    {
-        id: 1,
-        name: "ParityKit",
-        description: "A toolkit for creating parity products",
-        tags: ["SaaS", "Pricing", "global"],
-        votes: 615,
-        isFeatured: true,
-    },
-    {
-        id: 2,
-        name: "modern Full Stack Next.js course",
-        description: "Learn to build production-ready full stack apps with Next.js",
-        tags: ["Next.js", "Full-Stack", "Course"],
-        votes: 125,
-        isFeatured: false,
-    },
-]
+// const featuredProducts = [
+//     {
+//         id: 1,
+//         name: "ParityKit",
+//         description: "A toolkit for creating parity products",
+//         tags: ["SaaS", "Pricing", "global"],
+//         votes: 615,
+//         isFeatured: true,
+//     },
+//     {
+//         id: 2,
+//         name: "modern Full Stack Next.js course",
+//         description: "Learn to build production-ready full stack apps with Next.js",
+//         tags: ["Next.js", "Full-Stack", "Course"],
+//         votes: 125,
+//         isFeatured: false,
+//     },
+// ]
 
 
-export default function FeaturedProducts() {
+export default async function FeaturedProducts() {
+    const featuredProducts = await getFeaturedProducts();
     return (
         <section className="py-20 bg-muted/20">
           <div className="wrapper">
