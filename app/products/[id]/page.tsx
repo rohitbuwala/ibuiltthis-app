@@ -1,4 +1,11 @@
-import { promises } from "dns";
+import { getFeaturedProducts } from "@/lib/products/product-select";
+
+export const generateStaticParams = async () => {
+    const products = await  getFeaturedProducts();
+return products.map((product) => ({
+    id: product.id.toString(),
+}));
+};
 
 export default async function Product({
     params,} 

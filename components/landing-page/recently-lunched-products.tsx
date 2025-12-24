@@ -1,28 +1,11 @@
 import { CalendarIcon, RocketIcon } from "lucide-react";
-import SectionHeader from "../common/section-header";
+import SectionHeader from "@/components/common/section-header";
+import ProductCard from "@/components/products/product-card";
+import EmptyState from "@/components/common/empty-state";
+import { getRecentlyLaunchedProducts } from "@/lib/products/product-select";
 
-import ProductCard from "../products/product-card";
-import EmptyState from "../common/empty-state";
-
-export default function RecentlyLunchedProducts() {
-   const recentlyLaunchedProducts = [
-    {
-        id: 1,
-        name: "ParityKit",
-        description: "A toolkit for creating parity products",
-        tags: ["SaaS", "Pricing", "global"],
-        votes: 615,
-        isFeatured: true,
-    },
-    {
-        id: 2,
-        name: "modern Full Stack Next.js course",
-        description: "Learn to build production-ready full stack apps with Next.js",
-        tags: ["Next.js", "Full-Stack", "Course"],
-        votes: 125,
-        isFeatured: false,
-    },
-]
+export default async function RecentlyLunchedProducts() {
+   const recentlyLaunchedProducts = await getRecentlyLaunchedProducts();
 
   return (
     <section className="py-20">
