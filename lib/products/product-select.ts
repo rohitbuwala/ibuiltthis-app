@@ -2,7 +2,7 @@ import { db } from "@/db";
 import { products } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { connection } from "next/server";
-import { resolve } from "path";
+
 
 export async function getFeaturedProducts() {
     "use cache";
