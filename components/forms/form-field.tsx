@@ -1,26 +1,25 @@
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "../ui/textarea";
-import React from "react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
-interface FromFieldProps {
-    label: string;
-    name: string;
-    id: string;
-    placeholder?: string;
-    required?: boolean;
-    onChange?: (e: 
-        |React.ChangeEvent<HTMLInputElement>
-        | React.ChangeEvent<HTMLTextAreaElement>
-        ) => void;
-    error?: string[];
-    helperText?: string;
-    textarea?: boolean;
+interface FormFieldProps {
+  label: string;
+  name: string;
+  id: string;
+  placeholder?: string;
+  required: boolean;
+  onChange: (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => void;
+  error: string[];
+  helperText?: string;
+  textarea?: boolean;
 }
 
-
-export  const FormField = ({
-     label,
+export const FormField = ({
+  label,
   name,
   id,
   placeholder,
@@ -29,34 +28,35 @@ export  const FormField = ({
   error,
   helperText,
   textarea,
-}: FromFieldProps) => {
-
-    return (
-        <div className="space-y-2">
-            <Label htmlFor={id}>{label}</Label>
-            {textarea ?(
-                <Textarea
-                id={id}
-                name={name}
-                placeholder={placeholder}
-                required={required}
-                onChange={onChange as (e: React.ChangeEvent<HTMLTextAreaElement>) => void}
-                />
-            ) : (
-            <Input
-                id={id}
-                name={name}
-                placeholder={placeholder}
-                required={required}
-                onChange={onChange as  (e: React.ChangeEvent<HTMLInputElement>) => void}
-            />
-            )}
-            {helperText && (
-            <p className="text-xs text-muted-foreground">{helperText}</p>
-            )}
-             {error && <p className="text-sm text-destructive">{error.join(",")}</p>}
-
-        </div>
-    )
-
-}
+}: FormFieldProps) => {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor={id}>{label}</Label>
+      {textarea ? (
+        <Textarea
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          required={required}
+          onChange={
+            onChange as (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+          }
+        />
+      ) : (
+        <Input
+          id={id}
+          name={name}
+          placeholder={placeholder}
+          required={required}
+          onChange={
+            onChange as (e: React.ChangeEvent<HTMLInputElement>) => void
+          }
+        />
+      )}
+      {helperText && (
+        <p className="text-xs text-muted-foreground">{helperText}</p>
+      )}
+      {error && <p className="text-sm text-destructive">{error.join(", ")}</p>}
+    </div>
+  );
+};

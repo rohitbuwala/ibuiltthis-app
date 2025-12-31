@@ -3,53 +3,56 @@ import { products } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { connection } from "next/server";
 
-
 export async function getFeaturedProducts() {
-    const productsData = await db
+  "use cache";
+  const productsData = await db
     .select()
     .from(products)
     .where(eq(products.status, "approved"))
     .orderBy(desc(products.voteCount));
 
-    return productsData
+  return productsData;
 }
+
 export async function getAllApprovedProducts() {
-    const productsData = await db
+  const productsData = await db
     .select()
     .from(products)
     .where(eq(products.status, "approved"))
     .orderBy(desc(products.voteCount));
 
-    return productsData
+  return productsData;
 }
+
 export async function getAllProducts() {
-    const productsData = await db
+  "use cache";
+  const productsData = await db
     .select()
     .from(products)
-    .where(eq(products.status, "approved"))
     .orderBy(desc(products.voteCount));
 
-    return productsData
+  return productsData;
 }
 
-export async function getRecentlyLaunchedProducts () {
-    await connection();
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    const productsData = await getAllApprovedProducts();
-    const oneWeekAgo = new Date();
-    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+export async function getRecentlyLaunchedProducts() {
+  await connection();
+  const productsData = await getAllApprovedProducts();
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-    return productsData.filter(
-        (product) => 
-         product.createdAt && 
-         new Date(product.createdAt.toISOString()) >= oneWeekAgo);
+  return productsData.filter(
+    (product) =>
+      product.createdAt &&
+      new Date(product.createdAt.toISOString()) >= oneWeekAgo
+  );
 }
 
-export async function getProductBySlug(slug: string){
-    const product = await db.
-    select()
+export async function getProductBySlug(slug: string) {
+  const product = await db
+    .select()
     .from(products)
-    .where(eq(products.slug, slug));
+    .where(eq(products.slug, slug))
+    .limit(1);
 
-    return product?.[0] ?? null
+  return product?.[0] ?? null;
 }

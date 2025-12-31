@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/neon-http";
-import { products } from "./schema"
+import { products } from "./schema";
 import { allProducts } from "./data";
 
 const db = drizzle(process.env.DATABASE_URL!);
