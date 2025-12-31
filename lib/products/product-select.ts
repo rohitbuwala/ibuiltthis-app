@@ -5,7 +5,15 @@ import { connection } from "next/server";
 
 
 export async function getFeaturedProducts() {
-    "use cache";
+    const productsData = await db
+    .select()
+    .from(products)
+    .where(eq(products.status, "approved"))
+    .orderBy(desc(products.voteCount));
+
+    return productsData
+}
+export async function getAllApprovedProducts() {
     const productsData = await db
     .select()
     .from(products)
@@ -15,7 +23,6 @@ export async function getFeaturedProducts() {
     return productsData
 }
 export async function getAllProducts() {
-    "use cache";
     const productsData = await db
     .select()
     .from(products)
@@ -28,7 +35,7 @@ export async function getAllProducts() {
 export async function getRecentlyLaunchedProducts () {
     await connection();
     await new Promise((resolve) => setTimeout(resolve, 3000));
-    const productsData = await getAllProducts();
+    const productsData = await getAllApprovedProducts();
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
