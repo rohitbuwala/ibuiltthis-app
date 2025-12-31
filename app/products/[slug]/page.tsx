@@ -1,34 +1,47 @@
+"use cache";
+
 import SectionHeader from "@/components/common/section-header";
-import { getFeaturedProducts, getProductBySlug } from "@/lib/products/product-select";
-import { ArrowLeftIcon, CalendarIcon, ExternalLinkIcon, StarIcon, UserIcon } from "lucide-react";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import VotingButtons from "@/components/products/voting-buttons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import VotingButtons from "@/components/products/voting-buttons";
+import {
+  getFeaturedProducts,
+  getProductBySlug,
+} from "@/lib/products/product-select";
+import {
+  ArrowLeftIcon,
+  CalendarIcon,
+  ExternalLinkIcon,
+  StarIcon,
+  UserIcon,
+} from "lucide-react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const generateStaticParams = async () => {
-    const products = await  getFeaturedProducts();
-return products.map((product) => ({
+  const products = await getFeaturedProducts();
+  return products.map((product) => ({
     slug: product.slug.toString(),
-}));
+  }));
 };
 
 export default async function Product({
-    params,} 
-    : { 
-        params: Promise <{slug: string}>; } ) {
-     const {slug} =await params;
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
-    const product = await getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
-    if(!product){
-        notFound();
-    }
-    
-    const {name, description, websiteUrl, tags, voteCount, tagline} = product;
-    return(
-         <div className="py-16">
+  if (!product) {
+    notFound();
+  }
+
+  const { name, description, websiteUrl, tags, voteCount, tagline } = product;
+
+  return (
+    <div className="py-16">
       <div className="wrapper">
         <Link
           href="/explore"
@@ -128,5 +141,5 @@ export default async function Product({
         </div>
       </div>
     </div>
-    )
+  );
 }
