@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ChevronDownIcon, ChevronUpIcon, Loader2Icon } from "lucide-react";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { downvoteProductAction, upvoteProductAction } from "@/lib/products/product-actions";
 import { useOptimistic, useTransition } from "react";
 

@@ -2,7 +2,7 @@ import { ProductType } from "@/types";
 import { Trash2Icon } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Card, CardDescription, CardFooter, CardTitle } from "../ui/card";
+import { Card, CardDescription, CardTitle } from "../ui/card";
 import AdminActions from "./admin-actions";
 import { cn } from "@/lib/utils";
 
@@ -12,10 +12,10 @@ export default function AdminProductCard({
   product: ProductType;
 }) {
   return (
-    <Card className="border rounded-lg p-6 bg-background hover:shadow-md transition-shadow">
-      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+    <Card className="border rounded-lg p-4 sm:p-6 bg-background hover:shadow-md transition-shadow">
+      <div className="flex flex-col gap-4 sm:gap-6">
         <div className="flex-1 min-w-0 space-y-4">
-          <CardTitle className="text-xl font-semibold flex justify-between items-center">
+          <CardTitle className="text-lg sm:text-xl font-semibold flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             {product.name}
 
             <Badge
@@ -33,14 +33,14 @@ export default function AdminProductCard({
           </CardTitle>
           <CardDescription className="flex flex-col gap-4">
             {product.tagline}
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               {product.tags?.map((tag) => (
                 <Badge variant="secondary" key={tag}>
                   {tag}
                 </Badge>
               ))}
             </div>
-            <div className="flex gap-x-4 gap-y-2 text-sm text-muted-foreground">
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground">
               <p>
                 <span className="font-bold">By:</span> {product.submittedBy}
               </p>
@@ -64,15 +64,13 @@ export default function AdminProductCard({
               </p>
             </div>
           </CardDescription>
-          <CardFooter>
-            <Button variant="outline">
-              <Trash2Icon className="size-4" />
-              Delete
-            </Button>
-          </CardFooter>
         </div>
-        <div className="lg:shrink-0">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
           <AdminActions status={product.status ?? ""} productId={product.id} />
+          <Button variant="outline" className="sm:mt-0">
+            <Trash2Icon className="size-4" />
+            Delete
+          </Button>
         </div>
       </div>
     </Card>

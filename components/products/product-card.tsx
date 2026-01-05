@@ -17,9 +17,9 @@ export default function ProductCard({ product }: { product: ProductType }) {
     <Link href={`/products/${product.slug}`}>
       <Card className="group card-hover hover:bg-primary-foreground/10 border-solid border-gray-400 min-h-[200px]">
         <CardHeader className="flex-1">
-          <div className="flex items-start gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-start gap-4">
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <CardTitle className="text-lg group-hover:text-primary transition-colors">
                   {product.name}
                 </CardTitle>
@@ -30,7 +30,7 @@ export default function ProductCard({ product }: { product: ProductType }) {
                   </Badge>
                 )}
               </div>
-              <CardDescription>{product.description}</CardDescription>
+              <CardDescription className="mt-2">{product.description}</CardDescription>
             </div>
             {/** Voting buttons */}
             <VotingButtons
@@ -41,7 +41,7 @@ export default function ProductCard({ product }: { product: ProductType }) {
           </div>
         </CardHeader>
         <CardFooter>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {product.tags?.map((tag) => (
               <Badge variant="secondary" key={tag}>
                 {tag}

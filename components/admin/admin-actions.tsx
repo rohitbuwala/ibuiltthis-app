@@ -28,7 +28,7 @@ export default function AdminActions({
         <div className="flex gap-2">
           <Button
             variant="default"
-            className="hover:cursor-pointer"
+            className="hover:cursor-pointer flex-1 sm:flex-none"
             onClick={handleApprove}
           >
             <CheckCircleIcon className="size-4" />
@@ -36,7 +36,7 @@ export default function AdminActions({
           </Button>
           <Button
             variant="destructive"
-            className="hover:cursor-pointer"
+            className="hover:cursor-pointer flex-1 sm:flex-none"
             onClick={handleReject}
           >
             <XCircleIcon className="size-4" />

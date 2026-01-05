@@ -8,9 +8,9 @@ import { CompassIcon } from "lucide-react";
 export default async function ExplorePage() {
      const products = await getAllApprovedProducts()
     return(
-        <div className="py-20">
+        <div className="py-12 sm:py-16 lg:py-20">
             <div className="wrapper">
-                <div className="mb-12">
+                <div className="mb-8 sm:mb-12">
 
             <SectionHeader
             title="Explore All Product"

@@ -8,8 +8,8 @@ export default async function RecentlyLunchedProducts() {
    const recentlyLaunchedProducts = await getRecentlyLaunchedProducts();
 
   return (
-    <section className="py-20">
-      <div className="wrapper space-y-12">
+    <section className="py-12 sm:py-16 lg:py-20">
+      <div className="wrapper space-y-8 sm:space-y-12">
     <SectionHeader
         title="Recently Launched"
         icon={RocketIcon}

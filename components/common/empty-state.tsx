@@ -8,13 +8,13 @@ export default function EmptyState({
     icon: LucideIcon
 }) {
     return (
-        <div className="empty-state">
+        <div className="empty-state p-8 sm:p-12">
             { Icon && (
-                <Icon className="size-12 text-muted-foreground/50 mx-auto mb-4"/>
+                <Icon className="size-10 sm:size-12 text-muted-foreground/50 mx-auto mb-3 sm:mb-4"/>
             )
 
             }
-            <p className="text-lg text-muted-foreground">{message}</p>
+            <p className="text-base sm:text-lg text-muted-foreground">{message}</p>
         </div>
     )
 }

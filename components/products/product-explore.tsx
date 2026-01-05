@@ -49,7 +49,7 @@ export default function ProductExplorer({
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row gap-4 mb-8">
+      <div className="flex flex-col gap-4 mb-6 sm:mb-8">
         <div className="flex-1 relative">
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-4" />
           <Input
@@ -61,10 +61,11 @@ export default function ProductExplorer({
           />
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 overflow-x-auto pb-1">
           <Button
             variant={sortBy === "trending" ? "default" : "outline"}
             onClick={() => setSortBy("trending")}
+            className="whitespace-nowrap"
           >
             <TrendingUpIcon className="size-4" />
             Trending
@@ -72,6 +73,7 @@ export default function ProductExplorer({
           <Button
             variant={sortBy === "recent" ? "default" : "outline"}
             onClick={() => setSortBy("recent")}
+            className="whitespace-nowrap"
           >
             <ClockIcon className="size-4" />
             Recent
@@ -79,7 +81,7 @@ export default function ProductExplorer({
         </div>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <p className="text-sm text-muted-foreground">
           Showing {filteredProducts.length} products
         </p>
