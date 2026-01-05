@@ -34,9 +34,9 @@ export default async function AdminPage() {
     (product) => product.status === "rejected"
   );
   return (
-    <div className="py-12 sm:py-16 lg:py-20">
+    <div className="py-10 sm:py-16 lg:py-20">
       <div className="wrapper">
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-6 sm:mb-12">
           <SectionHeader
             title="Product Admin"
             icon={ShieldIcon}
@@ -51,7 +51,7 @@ export default async function AdminPage() {
         />
 
         <section className="my-8 sm:my-12">
-          <div className="section-header-with-count flex-col sm:flex-row items-start sm:items-center gap-2">
+          <div className="section-header-with-count">
             <h2 className="text-xl sm:text-2xl font-bold">
               Pending Products ({pendingProducts.length})
             </h2>
@@ -70,7 +70,7 @@ export default async function AdminPage() {
         </section>
 
         <section className="my-8 sm:my-12">
-          <div className="section-header-with-count flex-col sm:flex-row items-start sm:items-center gap-2">
+          <div className="section-header-with-count">
             <h2 className="text-xl sm:text-2xl font-bold">All Products</h2>
           </div>
           <div className="space-y-4">

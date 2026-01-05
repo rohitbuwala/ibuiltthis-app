@@ -37,18 +37,18 @@ export default function VotingButtons({
 
 
     return(
-          <div className="flex flex-col items-center gap-1 shrink-0" 
+          <div className="flex flex-col items-center gap-0.5 shrink-0"
           onClick={
             (e) => {
                 e.preventDefault();
                 e.stopPropagation();
             }
           }>
-                <Button 
+                <Button
                 onClick={handleUpvote}
                 variant="ghost"
                 size="icon-sm"
-                 className={cn("h-8 w-8 text-primary",
+                 className={cn("h-7 sm:h-8 w-7 sm:w-8 text-primary",
                     hasVoted ?
                      "bg-primary/10 text-primary hover:bg-primary/20" : "hover:bg-primary/10 hover:text-primary"
                  )}
@@ -59,19 +59,17 @@ export default function VotingButtons({
                 <span className="text-sm font-semibold transition-colors text-foreground">
                 {optimisticVoteCount}
                 </span>
-                <Button 
+                <Button
                 onClick={handleDownvote}
                 variant="ghost"
                 size="icon-sm"
                 disabled={isPending}
-                 className={cn("h-8 w-8 text-primary",
-                    hasVoted ? "hover:text-destructive" 
+                 className={cn("h-7 sm:h-8 w-7 sm:w-8 text-primary",
+                    hasVoted ? "hover:text-destructive"
                     : "opacity-50 cursor-not-allowed"
                 )}>
                     <ChevronDownIcon className="size-5"/>
                 </Button>
-                <span className="text-sm font-semibold transition-colors text-foreground">
-                </span>
                 </div>
     )
 }

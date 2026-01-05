@@ -29,11 +29,15 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en">
       <body
-        className={`${outfit.variable} ${outfit.variable} antialiased`}
+        className={`${outfit.variable} ${outfit.variable} antialiased overflow-x-hidden`}
       >
-       <Header/>
-        {children}
+       <div className="flex flex-col min-h-screen relative">
+        <Header/>
+        <main className="flex-1 relative z-0">
+          {children}
+        </main>
         <Footer/>
+       </div>
       </body>
     </html>
     </ClerkProvider>

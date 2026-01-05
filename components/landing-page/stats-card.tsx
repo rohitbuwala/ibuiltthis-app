@@ -15,7 +15,7 @@ export default function StatsCard(
     
     {
     return (
-        <div className={cn("space-y-2")}>
+        <div className={cn("space-y-1 sm:space-y-2")}>
         <div className="flex items-center justify-center gap-2">
         <Icon className="size-4 sm:size-5 text-primary/70"/>
         <p className="text-2xl sm:text-3xl lg:text-4xl font-bold">

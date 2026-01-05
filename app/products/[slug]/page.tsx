@@ -41,17 +41,17 @@ export default async function Product({
   const { name, description, websiteUrl, tags, voteCount, tagline } = product;
 
   return (
-    <div className="py-12 sm:py-16">
-      <div className="wrapper px-4">
-        <Link
-          href="/explore"
-          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 sm:mb-8 transition-colors"
-        >
-          <ArrowLeftIcon className="size-4" /> Back to Explore
-        </Link>
+    <>
+      <div className="min-h-screen py-10 sm:py-16 lg:pr-80">
+        <div className="wrapper">
+          <Link
+            href="/explore"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 sm:mb-8 transition-colors"
+          >
+            <ArrowLeftIcon className="size-4" /> Back to Explore
+          </Link>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-8 sm:mb-12">
-          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+          <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 lg:space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
               <div className="flex-1 min-w-0">
                 <div className="mb-4 sm:mb-6">
@@ -104,42 +104,76 @@ export default async function Product({
               </div>
             </div>
           </div>
-          <div className="lg:col-span-1">
-            <div className="sticky top-20 sm:top-24 space-y-4">
-              <div className="border rounded-lg p-4 sm:p-6 bg-background">
-                <div className="text-center mb-4 sm:mb-6">
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-2">
-                    Support this product
-                  </p>
-                  <VotingButtons productId={product.id} voteCount={voteCount} />
-                </div>
-                {voteCount > 100 && (
-                  <div className="pt-4 sm:pt-6 border-t">
-                    <Badge className="w-full justify-center py-2 text-xs sm:text-sm">
-                      🔥 Featured Product
-                    </Badge>
-                  </div>
-                )}
-              </div>
-              {websiteUrl && (
-                <Button
-                  asChild
-                  className="w-full rounded-lg"
-                  variant={"outline"}
-                >
-                  <a
-                    href={websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Visit Website <ExternalLinkIcon className="size-4 ml-2" />
-                  </a>
-                </Button>
-              )}
-            </div>
-          </div>
         </div>
       </div>
-    </div>
+
+      <div className="hidden lg:block fixed right-0 top-16 bottom-0 w-80 p-4 space-y-4 bg-background border-l shadow-xl overflow-y-auto z-[9999]">
+        <div className="border rounded-lg p-4 sm:p-6 bg-background shadow-lg">
+          <div className="text-center mb-4 sm:mb-6">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-2">
+              Support this product
+            </p>
+            <VotingButtons productId={product.id} voteCount={voteCount} />
+          </div>
+          {voteCount > 100 && (
+            <div className="pt-4 sm:pt-6 border-t">
+              <Badge className="w-full justify-center py-2 text-xs sm:text-sm">
+                🔥 Featured Product
+              </Badge>
+            </div>
+          )}
+        </div>
+        {websiteUrl && (
+          <Button
+            asChild
+            className="w-full rounded-lg"
+            variant={"outline"}
+          >
+            <a
+              href={websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit Website <ExternalLinkIcon className="size-4 ml-2" />
+            </a>
+          </Button>
+        )}
+      </div>
+
+      <div className="lg:hidden mt-8">
+        <div className="wrapper">
+          <div className="border rounded-lg p-4 sm:p-6 bg-background shadow-lg">
+            <div className="text-center mb-4 sm:mb-6">
+              <p className="text-xs sm:text-sm text-muted-foreground mb-2">
+                Support this product
+              </p>
+              <VotingButtons productId={product.id} voteCount={voteCount} />
+            </div>
+            {voteCount > 100 && (
+              <div className="pt-4 sm:pt-6 border-t">
+                <Badge className="w-full justify-center py-2 text-xs sm:text-sm">
+                  🔥 Featured Product
+                </Badge>
+              </div>
+            )}
+          </div>
+          {websiteUrl && (
+            <Button
+              asChild
+              className="w-full rounded-lg mt-4"
+              variant={"outline"}
+            >
+              <a
+                href={websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit Website <ExternalLinkIcon className="size-4 ml-2" />
+              </a>
+            </Button>
+          )}
+        </div>
+      </div>
+    </>
   );
 }

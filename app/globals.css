@@ -215,11 +215,22 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50 p-0 m-0;
+  *,
+  *::before,
+  *::after {
+    @apply box-border border-border outline-ring/50 p-0 m-0;
   }
+
+  html {
+    @apply overflow-x-hidden;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+
+  html, body {
+    @apply min-h-full;
   }
 }
 
@@ -239,12 +250,12 @@
 
   /* Empty state styling - used when no data is available */
   .empty-state {
-    @apply border rounded-lg p-12 text-center;
+    @apply border rounded-lg p-8 sm:p-12 text-center;
   }
 
   /* Status badge card - used in stats displays */
   .status-badge-card {
-    @apply border rounded-lg p-6 transition-all hover:shadow-md;
+    @apply border rounded-lg p-4 sm:p-6 transition-all hover:shadow-md;
   }
 
   /* Product meta info styling - used for displaying metadata */

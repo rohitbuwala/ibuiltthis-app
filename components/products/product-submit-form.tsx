@@ -27,7 +27,7 @@ export default function ProductSubmitForm() {
   };
 
   return (
-    <form className="space-y-4 sm:space-y-6" action={formAction}>
+    <form className="space-y-3 sm:space-y-6" action={formAction}>
       {message && (
         <div
           className={cn(

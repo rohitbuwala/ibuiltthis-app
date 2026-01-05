@@ -120,11 +120,11 @@ export default function Header() {
           <Logo />
           <SheetClose onClick={() => setMobileMenuOpen(false)} />
         </SheetHeader>
-        <SheetContent>
+        <SheetContent className="space-y-4">
           <nav className="space-y-1">
             <MobileNavLinks />
           </nav>
-          <div className="mt-4 space-y-2">
+          <div className="space-y-2">
             <Suspense
               fallback={
                 <div>
@@ -133,24 +133,24 @@ export default function Header() {
               }
             >
               <SignedOut>
-                <Button 
-                  variant="outline" 
-                  className="w-full justify-start border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800 hover:border-gray-600" 
+                <Button
+                  variant="outline"
+                  className="w-full justify-start border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800 hover:border-gray-600"
                   asChild
                 >
                   <SignInButton>Sign In</SignInButton>
                 </Button>
-                <Button 
-                  className="w-full justify-start bg-primary text-primary-foreground hover:bg-primary/90" 
+                <Button
+                  className="w-full justify-start bg-primary text-primary-foreground hover:bg-primary/90"
                   asChild
                 >
                   <SignUpButton>Sign Up</SignUpButton>
                 </Button>
               </SignedOut>
               <SignedIn>
-                <Button 
-                  variant="default" 
-                  className="w-full justify-start gap-2 bg-primary text-primary-foreground hover:bg-primary/90" 
+                <Button
+                  variant="default"
+                  className="w-full justify-start gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
                   asChild
                 >
                   <Link href="/submit">
@@ -158,7 +158,7 @@ export default function Header() {
                     Submit Project
                   </Link>
                 </Button>
-                <div className="pt-2">
+                <div className="flex items-center justify-center py-2">
                   <CustomUserButton />
                 </div>
               </SignedIn>

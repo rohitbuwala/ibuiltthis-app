@@ -49,7 +49,7 @@ export default function ProductExplorer({
 
   return (
     <div>
-      <div className="flex flex-col gap-4 mb-6 sm:mb-8">
+      <div className="flex flex-col gap-3 mb-6 sm:mb-8">
         <div className="flex-1 relative">
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-4" />
           <Input
@@ -61,7 +61,7 @@ export default function ProductExplorer({
           />
         </div>
 
-        <div className="flex gap-2 overflow-x-auto pb-1">
+        <div className="flex gap-2 overflow-x-auto">
           <Button
             variant={sortBy === "trending" ? "default" : "outline"}
             onClick={() => setSortBy("trending")}

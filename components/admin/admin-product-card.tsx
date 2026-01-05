@@ -14,7 +14,7 @@ export default function AdminProductCard({
   return (
     <Card className="border rounded-lg p-4 sm:p-6 bg-background hover:shadow-md transition-shadow">
       <div className="flex flex-col gap-4 sm:gap-6">
-        <div className="flex-1 min-w-0 space-y-4">
+        <div className="flex-1 min-w-0 space-y-3 sm:space-y-4">
           <CardTitle className="text-lg sm:text-xl font-semibold flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             {product.name}
 
@@ -31,7 +31,7 @@ export default function AdminProductCard({
               {product.status}
             </Badge>
           </CardTitle>
-          <CardDescription className="flex flex-col gap-4">
+          <CardDescription className="flex flex-col gap-3">
             {product.tagline}
             <div className="flex flex-wrap items-center gap-2">
               {product.tags?.map((tag) => (
@@ -65,7 +65,7 @@ export default function AdminProductCard({
             </div>
           </CardDescription>
         </div>
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
           <AdminActions status={product.status ?? ""} productId={product.id} />
           <Button variant="outline" className="sm:mt-0">
             <Trash2Icon className="size-4" />
