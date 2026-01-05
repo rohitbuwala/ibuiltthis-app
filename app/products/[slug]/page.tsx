@@ -42,7 +42,7 @@ export default async function Product({
 
   return (
     <>
-      <div className="min-h-screen py-10 sm:py-16 lg:pr-80">
+      <div className="min-h-screen py-10 sm:py-16 lg:pr-80 pb-24 lg:pb-10">
         <div className="wrapper">
           <Link
             href="/explore"
@@ -107,7 +107,7 @@ export default async function Product({
         </div>
       </div>
 
-      <div className="hidden lg:block fixed right-0 top-16 bottom-0 w-80 p-4 space-y-4 bg-background border-l shadow-xl overflow-y-auto z-[9999]">
+      <div className="fixed right-0 top-16 bottom-0 w-80 h-screen p-4 space-y-4 bg-background border-l shadow-lg overflow-y-auto z-[60] hidden lg:block">
         <div className="border rounded-lg p-4 sm:p-6 bg-background shadow-lg">
           <div className="text-center mb-4 sm:mb-6">
             <p className="text-xs sm:text-sm text-muted-foreground mb-2">
@@ -140,28 +140,15 @@ export default async function Product({
         )}
       </div>
 
-      <div className="lg:hidden mt-8">
-        <div className="wrapper">
-          <div className="border rounded-lg p-4 sm:p-6 bg-background shadow-lg">
-            <div className="text-center mb-4 sm:mb-6">
-              <p className="text-xs sm:text-sm text-muted-foreground mb-2">
-                Support this product
-              </p>
-              <VotingButtons productId={product.id} voteCount={voteCount} />
-            </div>
-            {voteCount > 100 && (
-              <div className="pt-4 sm:pt-6 border-t">
-                <Badge className="w-full justify-center py-2 text-xs sm:text-sm">
-                  🔥 Featured Product
-                </Badge>
-              </div>
-            )}
-          </div>
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-background border-t shadow-lg z-[55] p-4">
+        <div className="flex items-center justify-between gap-4">
+          <VotingButtons productId={product.id} voteCount={voteCount} />
           {websiteUrl && (
             <Button
               asChild
-              className="w-full rounded-lg mt-4"
+              className="flex-shrink-0"
               variant={"outline"}
+              size="sm"
             >
               <a
                 href={websiteUrl}
