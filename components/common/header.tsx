@@ -100,7 +100,7 @@ export default function Header() {
       </div>
 
       <div
-        className={`md:hidden border-t bg-background transition-all duration-300 ease-in-out overflow-hidden ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
+        className={`md:hidden border-t shadow-xl bg-gray-100 dark:bg-gray-900 transition-all duration-300 ease-in-out overflow-hidden ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
       >
         <div className="wrapper py-4 space-y-4">
           <nav className="space-y-1">
