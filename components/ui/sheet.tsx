@@ -29,22 +29,22 @@ const Sheet = ({
     <>
       <div
         className={cn(
-          "fixed inset-0 z-50 transition-opacity duration-300 ease-in-out",
+          "fixed inset-0 z-50 transition-opacity duration-300 ease-in-out overflow-hidden",
           open ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
       >
         <div 
-          className="absolute inset-0 h-screen bg-black/50"
+          className="absolute inset-0 w-full h-full bg-black/50"
           onClick={() => onOpenChange(false)}
         />
         <div
           className={cn(
-            "absolute inset-y-0 right-0 w-[85%] sm:w-80 h-screen bg-black transition-transform duration-300 ease-in-out",
+            "absolute inset-y-0 right-0 w-[85%] sm:w-80 h-full bg-black transition-transform duration-300 ease-in-out overflow-x-hidden",
             open ? "translate-x-0" : "translate-x-full"
           )}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex h-full flex-col">{children}</div>
+          <div className="flex h-full flex-col overflow-x-hidden w-full">{children}</div>
         </div>
       </div>
     </>

@@ -27,13 +27,16 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+      </head>
       <body
-        className={`${outfit.variable} ${outfit.variable} antialiased overflow-x-hidden`}
+        className={`${outfit.variable} ${outfit.variable} antialiased overflow-x-hidden w-full max-w-full`}
       >
-       <div className="flex flex-col min-h-screen relative">
+       <div className="flex flex-col min-h-screen relative w-full max-w-full overflow-x-hidden">
         <Header/>
-        <main className="flex-1 relative z-0">
+        <main className="flex-1 z-0 w-full max-w-full overflow-x-hidden pt-16">
           {children}
         </main>
         <Footer/>

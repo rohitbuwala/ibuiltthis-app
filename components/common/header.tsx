@@ -6,20 +6,19 @@ import {
   HomeIcon,
   LoaderIcon,
   MenuIcon,
-  SparkleIcon,
   SparklesIcon,
+  XIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { Suspense, useState } from "react";
 import { Button } from "../ui/button";
 import CustomUserButton from "./custom-user-button";
-import { Sheet, SheetClose, SheetContent, SheetHeader } from "../ui/sheet";
 
 const Logo = () => {
   return (
     <Link href="/" className="flex items-center gap-2 group">
       <div className="size-8 rounded-lg bg-primary flex items-center justify-center">
-        <SparkleIcon className="size-4 text-primary-foreground" />
+        <SparklesIcon className="size-4 text-primary-foreground" />
       </div>
       <span className="text-xl font-bold">
         i<span className="text-primary">Built</span>This
@@ -28,32 +27,11 @@ const Logo = () => {
   );
 };
 
-const MobileNavLinks = () => {
-  return (
-    <>
-      <Link
-        href="/"
-        className="flex items-center gap-3 px-4 py-4 text-base font-medium text-gray-300 hover:text-white transition-colors hover:bg-gray-800/50 rounded-lg"
-      >
-        <HomeIcon className="size-5" />
-        <span>Home</span>
-      </Link>
-      <Link
-        href="/explore"
-        className="flex items-center gap-3 px-4 py-4 text-base font-medium text-gray-300 hover:text-white transition-colors hover:bg-gray-800/50 rounded-lg"
-      >
-        <CompassIcon className="size-5" />
-        <span>Explore</span>
-      </Link>
-    </>
-  );
-};
-
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+    <header className="fixed top-0 left-0 right-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="wrapper">
         <div className="flex h-16 items-center justify-between">
           <Logo />
@@ -75,7 +53,7 @@ export default function Header() {
             </Link>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Suspense
               fallback={
                 <div>
@@ -101,30 +79,58 @@ export default function Header() {
                   <CustomUserButton />
                 </SignedIn>
               </div>
+
+              <SignedIn>
+                <div className="flex items-center gap-2 md:hidden">
+                  <CustomUserButton />
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  >
+                    {mobileMenuOpen ? <XIcon className="size-6" /> : <MenuIcon className="size-6" />}
+                  </Button>
+                </div>
+              </SignedIn>
               
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden"
-                onClick={() => setMobileMenuOpen(true)}
-              >
-                <MenuIcon className="size-6" />
-              </Button>
+              <SignedOut>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                  {mobileMenuOpen ? <XIcon className="size-6" /> : <MenuIcon className="size-6" />}
+                </Button>
+              </SignedOut>
             </Suspense>
           </div>
         </div>
       </div>
 
-      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-        <SheetHeader>
-          <Logo />
-          <SheetClose onClick={() => setMobileMenuOpen(false)} />
-        </SheetHeader>
-        <SheetContent className="space-y-4">
+      <div
+        className={`md:hidden border-t bg-background transition-all duration-300 ease-in-out overflow-hidden ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
+      >
+        <div className="wrapper py-4 space-y-4">
           <nav className="space-y-1">
-            <MobileNavLinks />
+            <Link
+              href="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-3 px-4 py-3 text-base font-medium text-muted-foreground hover:text-foreground transition-colors hover:bg-muted/50 rounded-lg"
+            >
+              <HomeIcon className="size-5" />
+              <span>Home</span>
+            </Link>
+            <Link
+              href="/explore"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-3 px-4 py-3 text-base font-medium text-muted-foreground hover:text-foreground transition-colors hover:bg-muted/50 rounded-lg"
+            >
+              <CompassIcon className="size-5" />
+              <span>Explore</span>
+            </Link>
           </nav>
-          <div className="space-y-2">
+          <div className="space-y-2 pt-2 border-t">
             <Suspense
               fallback={
                 <div>
@@ -135,13 +141,13 @@ export default function Header() {
               <SignedOut>
                 <Button
                   variant="outline"
-                  className="w-full justify-start border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800 hover:border-gray-600"
+                  className="w-full justify-start"
                   asChild
                 >
                   <SignInButton>Sign In</SignInButton>
                 </Button>
                 <Button
-                  className="w-full justify-start bg-primary text-primary-foreground hover:bg-primary/90"
+                  className="w-full justify-start"
                   asChild
                 >
                   <SignUpButton>Sign Up</SignUpButton>
@@ -150,22 +156,19 @@ export default function Header() {
               <SignedIn>
                 <Button
                   variant="default"
-                  className="w-full justify-start gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
+                  className="w-full justify-start gap-2"
                   asChild
                 >
-                  <Link href="/submit">
+                  <Link href="/submit" onClick={() => setMobileMenuOpen(false)}>
                     <SparklesIcon className="size-4" />
                     Submit Project
                   </Link>
                 </Button>
-                <div className="flex items-center justify-center py-2">
-                  <CustomUserButton />
-                </div>
               </SignedIn>
             </Suspense>
           </div>
-        </SheetContent>
-      </Sheet>
+        </div>
+      </div>
     </header>
   );
 }

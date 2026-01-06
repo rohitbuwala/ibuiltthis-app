@@ -223,14 +223,40 @@
 
   html {
     @apply overflow-x-hidden;
+    width: 100%;
+    max-width: 100%;
+    overflow-y: scroll;
   }
 
   body {
     @apply bg-background text-foreground overflow-x-hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
   }
 
   html, body {
     @apply min-h-full;
+  }
+
+  img, video, canvas, svg {
+    @apply max-w-full h-auto;
+    display: block;
+  }
+
+  * {
+    @apply max-w-full;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 
