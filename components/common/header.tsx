@@ -61,6 +61,21 @@ export default function Header() {
                 </div>
               }
             >
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? <XIcon className="size-6" /> : <MenuIcon className="size-6" />}
+              </Button>
+
+              <SignedIn>
+                <div className="md:hidden">
+                  <CustomUserButton />
+                </div>
+              </SignedIn>
+
               <div className="hidden md:flex items-center gap-3">
                 <SignedOut>
                   <SignInButton />
@@ -79,30 +94,6 @@ export default function Header() {
                   <CustomUserButton />
                 </SignedIn>
               </div>
-
-              <SignedIn>
-                <div className="flex items-center gap-2 md:hidden">
-                  <CustomUserButton />
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  >
-                    {mobileMenuOpen ? <XIcon className="size-6" /> : <MenuIcon className="size-6" />}
-                  </Button>
-                </div>
-              </SignedIn>
-              
-              <SignedOut>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="md:hidden"
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                  {mobileMenuOpen ? <XIcon className="size-6" /> : <MenuIcon className="size-6" />}
-                </Button>
-              </SignedOut>
             </Suspense>
           </div>
         </div>
